@@ -265,7 +265,7 @@ var db = client.db('MyDB');
       /*(JSON.stringify(a1)===JSON.stringify(u) &&
      JSON.stringify(a1)===JSON.stringify(p)) */
       
-      "admin"===JSON.stringify(u) &&
+      ("admin"===JSON.stringify(u) &&
      "admin"===JSON.stringify(p))
     
     ){
