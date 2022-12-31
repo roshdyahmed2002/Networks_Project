@@ -10,7 +10,7 @@ var session = require('express-session');
 
 
 
-var Mongoclient = require('mongodb').MongoClient;
+//var Mongoclient = require('mongodb').MongoClient;
 
 
 // view engine setup
@@ -30,6 +30,11 @@ app.use(session({
 app.use(flash());
 
 //app.listen (3000);
+
+
+
+
+
 
 //const express = require("express");
 //const app = express();
@@ -106,7 +111,7 @@ app.get('/wanttogo', function(req, res){
 
   if(req.session.username !=null && req.session.password !=null ){
 
-  
+  /*
   Mongoclient.connect("mongodb://0.0.0.0:27017", function (err, client) {
 if (err) throw err;
 var db = client.db('MyDB');
@@ -138,13 +143,18 @@ j++;
       res.render('wanttogo',{ToArr:locArr,message:"The Want To Go List is Empty"})
 
 
-  });
+ // });
   
    
 
 
-});
+//});
 
+*/
+
+
+req.flash('message',"DOES NOT WORK IN DEPLOYED VERSION");
+res.redirect('/wanttogo');
 
 }
 else{
@@ -240,16 +250,17 @@ req.session.username=req.body.username;
 req.session.password=req.body.password;
 req.session.wanttogo=[];
 
-
+/*
   Mongoclient.connect("mongodb://0.0.0.0:27017", function (err, client) {
 if (err) throw err;
 var db = client.db('MyDB');
 
   db.collection('myCollection').find().toArray(function(err,results){
   var flag =false;
+  */
+
   for (let i = 0; i < results.length; i++) {
-    if((JSON.stringify(results[i].username)===JSON.stringify(u) &&
-     JSON.stringify(results[i].password)===JSON.stringify(p)) ||
+    if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
      (JSON.stringify(a1)===JSON.stringify(u) &&
      JSON.stringify(a1)===JSON.stringify(p)) ){
       flag=true;
@@ -270,10 +281,10 @@ var db = client.db('MyDB');
   
 
 
-   });
+   //});
 
 
-    });
+   // });
 
     
 
@@ -289,7 +300,7 @@ var db = client.db('MyDB');
       req.session.wanttogo=[];
 
       
-
+/*
         Mongoclient.connect("mongodb://0.0.0.0:27017", function (err, client) {
       if (err) throw err;
       var db = client.db('MyDB');
@@ -297,11 +308,12 @@ var db = client.db('MyDB');
       
       db.collection('myCollection').find().toArray(function(err,results){
         var flag =false;
+
+        */
         for (let i = 0; i < results.length; i++) {
-          if((JSON.stringify(results[i].username)===JSON.stringify(u) &&
-     JSON.stringify(results[i].password)===JSON.stringify(p)) ||
-     (JSON.stringify(a1)===JSON.stringify(u) &&
-     JSON.stringify(a1)===JSON.stringify(p)) ){
+          if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
+          (JSON.stringify(a1)===JSON.stringify(u) &&
+          JSON.stringify(a1)===JSON.stringify(p)) ){
             flag=true;
             res.redirect('/home')
             break;
@@ -320,12 +332,12 @@ var db = client.db('MyDB');
         
       
       
-         });
+     //    });
       
 
      
       
-          });
+        // });
 
          
 
@@ -345,10 +357,11 @@ app.post('/search', function(req, res){
 
   if(req.session.username !=null && req.session.password !=null ){
 
+    /*
 Mongoclient.connect("mongodb://0.0.0.0:27017", function (err, client) {
 if (err) throw err;
 var db = client.db('MyDB');
-
+*/
 var x= (req.body.Search).toLowerCase();
 
 if(x.length!=0){
@@ -374,7 +387,7 @@ else{
 
 }
 
-   });
+  // });
 
 
   }
@@ -391,6 +404,14 @@ else{
 
 app.post('/register', function(req, res){
 
+
+  req.flash('message',"DOES NOT WORK IN DEPLOYED VERSION");
+  res.redirect('/registration');
+
+
+
+  /*
+
 var x=req.body.username;
 var y =req.body.password;
 
@@ -403,6 +424,7 @@ var db = client.db('MyDB');
 
 db.collection('myCollection').find().toArray(function(err,results){
   var flag =false;
+
   for (let i = 0; i < results.length; i++) {
     if(JSON.stringify(results[i].username)===JSON.stringify(x) || (JSON.stringify(x))===JSON.stringify("")
     ||  (JSON.stringify(y))===JSON.stringify("")){
@@ -430,7 +452,7 @@ db.collection('myCollection').insertOne({username:x,password:y, location:[]});
 
 
    });
-
+*/
   
 
          });
@@ -499,6 +521,11 @@ app.post('/rome', function (req, res) {
 
 function newFunction(s,req,res) {
   
+  req.flash('message',"DOESN'T WORK IN DEPLOYED VERISON");
+  res.redirect(s);
+
+
+  /*
     Mongoclient.connect("mongodb://0.0.0.0:27017", function (err, client) {
       if (err)
         throw err;
@@ -551,5 +578,6 @@ function newFunction(s,req,res) {
       });
 
     });
+    */
 }
 
