@@ -6,8 +6,10 @@ const { json } = require('express');
 var app = express();
 
 var flash = require('connect-flash');
-var session = require('express-session');
 
+
+var session = require('express-session');
+//var session = require('cookie-session');
 
 
 //var Mongoclient = require('mongodb').MongoClient;
@@ -27,9 +29,14 @@ app.use(session({
   resave:false,
   saveUninitialized:false
 }));
+
+
+
+
+
 app.use(flash());
 
-//app.listen (3000);
+app.listen (3000);
 
 
 
@@ -38,14 +45,14 @@ app.use(flash());
 
 //const express = require("express");
 //const app = express();
-const PORT = process.env.PORT || 3030;
+/*const PORT = process.env.PORT || 3030;
 
 // your code
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
-
+*/
 
 
   app.get('/', function(req, res){
@@ -259,24 +266,17 @@ var db = client.db('MyDB');
   var flag =false;
   */
 
-  for (let i = 0; i < results.length; i++) {
+  //for (let i = 0; i < results.length; i++) {
     if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
-    
-      /*(JSON.stringify(a1)===JSON.stringify(u) &&
-     JSON.stringify(a1)===JSON.stringify(p)) */
-      
-      ("admin"===JSON.stringify(u) &&
-     "admin"===JSON.stringify(p))
-    
-    ){
-            console.log("HEREEEE")
+     (JSON.stringify(a1)===JSON.stringify(u) &&
+     JSON.stringify(a1)===JSON.stringify(p)) ){
       flag=true;
       res.redirect('/home')
-      break;
+      //break;
     }
     
 
-  }
+  //}
   if(flag==false){
    
   req.flash('message',"username or password are wrong, or you don't have an account");
@@ -317,17 +317,17 @@ var db = client.db('MyDB');
         var flag =false;
 
         */
-        for (let i = 0; i < results.length; i++) {
+     //   for (let i = 0; i < results.length; i++) {
           if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
           (JSON.stringify(a1)===JSON.stringify(u) &&
           JSON.stringify(a1)===JSON.stringify(p)) ){
             flag=true;
             res.redirect('/home')
-            break;
+           // break;
           }
           
       
-        }
+      //  }
         if(flag==false){
           req.flash('message',"username or password are wrong, or you don't have an account");
           res.redirect('/login');
