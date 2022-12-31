@@ -36,7 +36,7 @@ app.use(session({
 
 app.use(flash());
 
-//app.listen (3000);
+app.listen (3000);
 
 
 
@@ -45,13 +45,14 @@ app.use(flash());
 
 //const express = require("express");
 //const app = express();
-const PORT = process.env.PORT || 3030;
+/*const PORT = process.env.PORT || 3030;
 
 // your code
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
+*/
 
 
   app.get('/', function(req, res){
@@ -159,8 +160,7 @@ j++;
 */
 
 
-req.flash('message',"DOES NOT WORK IN DEPLOYED VERSION");
-res.redirect('/wanttogo');
+res.render('wanttogo',{message:"DOESN'T WORK IN THE DEPLOYED VERSION"});
 
 }
 else{
@@ -269,14 +269,14 @@ var db = client.db('MyDB');
     if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
      (JSON.stringify(a1)===JSON.stringify(u) &&
      JSON.stringify(a1)===JSON.stringify(p)) ){
-      flag=true;
+    //  flag=true;
       res.redirect('/home')
       //break;
     }
     
 
   //}
-  if(flag==false){
+  else{
    
   req.flash('message',"username or password are wrong, or you don't have an account");
   res.redirect('/login');
@@ -320,15 +320,15 @@ var db = client.db('MyDB');
           if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
           (JSON.stringify(a1)===JSON.stringify(u) &&
           JSON.stringify(a1)===JSON.stringify(p)) ){
-            flag=true;
+           // flag=true;
             res.redirect('/home')
            // break;
           }
           
       
       //  }
-        if(flag==false){
-          req.flash('message',"username or password are wrong, or you don't have an account");
+      else{
+        req.flash('message',"username or password are wrong, or you don't have an account");
           res.redirect('/login');
 
 
