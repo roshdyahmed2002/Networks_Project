@@ -261,8 +261,14 @@ var db = client.db('MyDB');
 
   for (let i = 0; i < results.length; i++) {
     if(//(JSON.stringify(results[i].username)===JSON.stringify(u) && JSON.stringify(results[i].password)===JSON.stringify(p)) ||
-     (JSON.stringify(a1)===JSON.stringify(u) &&
-     JSON.stringify(a1)===JSON.stringify(p)) ){
+    
+      /*(JSON.stringify(a1)===JSON.stringify(u) &&
+     JSON.stringify(a1)===JSON.stringify(p)) */
+      
+      "admin"===JSON.stringify(u) &&
+     "admin"===JSON.stringify(p))
+    
+    ){
             console.log("HEREEEE")
       flag=true;
       res.redirect('/home')
