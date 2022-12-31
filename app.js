@@ -36,7 +36,7 @@ app.use(session({
 
 app.use(flash());
 
-app.listen (3000);
+//app.listen (3000);
 
 
 
@@ -45,14 +45,14 @@ app.listen (3000);
 
 //const express = require("express");
 //const app = express();
-/*const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3030;
 
 // your code
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
-*/
+
 
 
   app.get('/', function(req, res){
